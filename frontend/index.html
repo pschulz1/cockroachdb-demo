@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cockroach DB demo-app</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="header">
+        <h2>Cockroach DB demo-app</h2>
+    </div>
+    <div class="orderHistory">
+        <h2>Order History</h2>
+        <div>
+            <table class="orders">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Order ID</th>
+                        <th>Order Country</th>
+                        <th>Order Total</th>
+                        <th># Items</th>
+                    </tr>
+                </thead>
+                <tbody id="orderList">
+
+                </tbody>
+            </table>
+            <p>Showing the last 20 orders</p>
+        </div>
+      </div>
+  </body>
+</html>

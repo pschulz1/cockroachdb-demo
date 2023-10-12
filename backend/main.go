@@ -4,26 +4,41 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gorilla/websocket"
-
-	"github.com/Hytm/demo-app-ws/backend/pkg/websocket"
+	"github.com/Hytm/demo-app-ws/pkg/faker"
+	"github.com/Hytm/demo-app-ws/pkg/websocket"
 )
 
-func serveWs(w http.ResponseWriter, r *http.Request) {
-	ws, err := Upgrade(w, r)
+func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
+	fmt.Println("WebSocket Endpoint Hit")
+	ws, err := websocket.Upgrade(w, r)
 	if err != nil {
 		fmt.Fprintf(w, "%+V\n", err)
 	}
-	go websocket.Writer(ws)
-	websocket.Reader(ws)
+
+	client := &websocket.Client{
+		Conn: ws,
+		Pool: pool,
+	}
+
+	pool.Register <- client
+	client.Read()
 }
 
 func setupRoutes() {
-	http.HandleFunc("/ws", serveWs)
+	pool := websocket.NewPool()
+	go pool.Start()
+
+	f := faker.NewFaker(1, 1000, pool)
+	go f.Start()
+
+	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+		serveWs(pool, w, r)
+	})
 }
 
 func main() {
-	fmt.Println("Distributed Chat App v0.01")
+	fmt.Println("Cockroaches and Gophers!")
 	setupRoutes()
+
 	http.ListenAndServe(":8080", nil)
 }

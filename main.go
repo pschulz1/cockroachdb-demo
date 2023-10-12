@@ -58,6 +58,9 @@ func setupRoutes() {
 	http.HandleFunc("/stop", func(w http.ResponseWriter, r *http.Request) {
 		f.Stop()
 	})
+
+	fs := http.FileServer(http.Dir("./frontend"))
+	http.Handle("/", fs)
 }
 
 func main() {

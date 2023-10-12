@@ -17,7 +17,6 @@ type Order struct {
 
 func NewOrder() *Order {
 	return &Order{
-		ID:            uuid.New(),
 		Price:         randomInt(100, 10000),
 		NumberOfItems: randomInt(1, 10),
 		Country:       randomCountry(),

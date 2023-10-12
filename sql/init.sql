@@ -6,6 +6,6 @@ CREATE TABLE orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     price INT,
     currency STRING,
-    items int,
+    number_of_items int,
     country STRING
 );

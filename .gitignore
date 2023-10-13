@@ -1,3 +1,4 @@
 .env
 demo-app-ws
 sql/scw-launch.sh
+sql/scw-scale-up.sh

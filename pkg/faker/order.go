@@ -41,5 +41,8 @@ func randomStringFromSlice(slice []string) string {
 }
 
 func (o *Order) JSON() string {
+	if o == nil {
+		return ""
+	}
 	return `{"id":"` + o.ID.String() + `","price":` + fmt.Sprintf("%d", o.Price) + `,"number_of_items":` + fmt.Sprintf("%d", o.NumberOfItems) + `,"country":"` + o.Country + `","currency":"` + o.Currency + `"}`
 }

@@ -18,9 +18,12 @@ const (
 type Faker struct {
 	Concurrency int
 	Wait        int
+	cnx         string
 	send        chan *Order
+	quit        chan struct{}
 	pool        *websocket.Pool
 	db          *pgxpool.Pool
+	running     bool
 }
 
 func NewFaker(concurrency int, wait int, pool *websocket.Pool, cnx string) *Faker {
@@ -32,7 +35,39 @@ func NewFaker(concurrency int, wait int, pool *websocket.Pool, cnx string) *Fake
 		concurrency = DefaultConcurrency
 	}
 
-	config, err := pgxpool.ParseConfig(cnx)
+	return &Faker{
+		Concurrency: concurrency,
+		Wait:        wait,
+		pool:        pool,
+		running:     false,
+		cnx:         cnx,
+	}
+}
+
+func (f *Faker) Start() {
+	if f.running {
+		return
+	}
+
+	f.initRun()
+	f.running = true
+
+	for i := 0; i < f.Concurrency; i++ {
+		go f.run()
+	}
+
+	for {
+		o := <-f.send
+		msg := o.JSON()
+		if msg == "" {
+			continue
+		}
+		f.pool.Broadcast <- websocket.Message{Type: 1, Body: msg}
+	}
+}
+
+func (f *Faker) initRun() {
+	config, err := pgxpool.ParseConfig(f.cnx)
 	if err != nil {
 		log.Fatal("error configuring the database: ", err)
 	}
@@ -41,26 +76,10 @@ func NewFaker(concurrency int, wait int, pool *websocket.Pool, cnx string) *Fake
 	if err != nil {
 		log.Fatal("error connecting to the database: ", err)
 	}
+	f.db = dbpool
 
-	return &Faker{
-		Concurrency: concurrency,
-		Wait:        wait,
-		send:        make(chan *Order),
-		pool:        pool,
-		db:          dbpool,
-	}
-}
-
-func (f *Faker) Start() {
-	for i := 0; i < f.Concurrency; i++ {
-		go f.run()
-	}
-
-	for {
-		o := <-f.send
-		msg := o.JSON()
-		f.pool.Broadcast <- websocket.Message{Type: 1, Body: msg}
-	}
+	f.send = make(chan *Order)
+	f.quit = make(chan struct{})
 }
 
 func (f *Faker) wait() {
@@ -73,12 +92,17 @@ func (f *Faker) wait() {
 
 func (f *Faker) run() {
 	for {
-		o, err := f.insertIntoDB()
-		if err != nil {
-			continue
+		select {
+		case <-f.quit:
+			return
+		default:
+			o, err := f.insertIntoDB()
+			if err != nil {
+				continue
+			}
+			f.send <- o
+			f.wait()
 		}
-		f.send <- o
-		f.wait()
 	}
 }
 
@@ -95,6 +119,12 @@ func (f *Faker) insertIntoDB() (*Order, error) {
 }
 
 func (f *Faker) Stop() {
-	f.db.Close()
+	for i := 0; i < f.Concurrency; i++ {
+		f.quit <- struct{}{}
+	}
+	close(f.quit)
 	close(f.send)
+	f.db.Close()
+
+	f.running = false
 }

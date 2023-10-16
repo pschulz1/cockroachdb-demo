@@ -17,6 +17,12 @@ const (
 	CONCURRENCY = "CONCURRENCY"
 	WAIT        = "WAIT"
 	DB          = "DB"
+
+	DOMAIN = "https://demoapp.bid/"
+)
+
+var (
+	f *faker.Faker
 )
 
 func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
@@ -48,7 +54,7 @@ func setupRoutes() {
 		w = faker.DefaultWait
 	}
 
-	f := faker.NewFaker(c, w, pool, os.Getenv(DB))
+	f = faker.NewFaker(c, w, pool, os.Getenv(DB))
 	go f.Start()
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
@@ -56,11 +62,16 @@ func setupRoutes() {
 	})
 
 	http.HandleFunc("/stop", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Stopping the faker")
 		f.Stop()
+		http.Redirect(w, r, DOMAIN, http.StatusSeeOther)
 	})
 
 	http.HandleFunc("/start", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Starting the faker with concurrency: ", f.Concurrency, " and wait: ", f.Wait)
 		go f.Start()
+		http.Redirect(w, r, DOMAIN, http.StatusSeeOther)
+
 	})
 
 	fs := http.FileServer(http.Dir("./frontend"))

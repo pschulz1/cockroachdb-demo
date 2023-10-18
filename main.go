@@ -66,21 +66,8 @@ func setupRoutes() {
 		serveWs(pool, w, r)
 	})
 
-	http.HandleFunc("/stop", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("Stopping the faker")
-		f.Stop()
-		http.Redirect(w, r, DOMAIN, http.StatusSeeOther)
-	})
-
 	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, s.GetStatus())
-	})
-
-	http.HandleFunc("/start", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("Starting the faker with concurrency: ", f.Concurrency, " and wait: ", f.Wait)
-		go f.Start()
-		http.Redirect(w, r, DOMAIN, http.StatusSeeOther)
-
 	})
 
 	fs := http.FileServer(http.Dir("./frontend"))

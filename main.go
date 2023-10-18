@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/Hytm/demo-app-ws/pkg/faker"
+	"github.com/Hytm/demo-app-ws/pkg/status"
 	"github.com/Hytm/demo-app-ws/pkg/websocket"
 
 	"github.com/joho/godotenv"
@@ -23,6 +24,7 @@ const (
 
 var (
 	f *faker.Faker
+	s *status.Status
 )
 
 func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
@@ -53,6 +55,9 @@ func setupRoutes() {
 	if err != nil {
 		w = faker.DefaultWait
 	}
+
+	s = status.Init()
+	go s.RunHealthCheck()
 
 	f = faker.NewFaker(c, w, pool, os.Getenv(DB))
 	go f.Start()

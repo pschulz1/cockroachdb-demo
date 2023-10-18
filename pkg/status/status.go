@@ -1,4 +1,4 @@
-package nodes
+package status
 
 import (
 	"encoding/json"

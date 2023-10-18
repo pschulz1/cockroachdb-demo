@@ -56,7 +56,7 @@ func setupRoutes() {
 		w = faker.DefaultWait
 	}
 
-	s = status.Init()
+	s = status.NewStatus()
 	go s.RunHealthCheck()
 
 	f = faker.NewFaker(c, w, pool, os.Getenv(DB))

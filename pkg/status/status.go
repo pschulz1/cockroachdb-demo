@@ -23,10 +23,10 @@ type Status struct {
 	nodesPerState map[string]int
 }
 
-func (s *Status) Init() *Status {
-	s.nodesPerState = make(map[string]int)
-
-	return s
+func NewStatus() *Status {
+	return &Status{
+		nodesPerState: make(map[string]int),
+	}
 }
 
 func (s *Status) RunHealthCheck() {

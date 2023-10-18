@@ -72,6 +72,10 @@ func setupRoutes() {
 		http.Redirect(w, r, DOMAIN, http.StatusSeeOther)
 	})
 
+	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, s.GetStatus())
+	})
+
 	http.HandleFunc("/start", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Starting the faker with concurrency: ", f.Concurrency, " and wait: ", f.Wait)
 		go f.Start()

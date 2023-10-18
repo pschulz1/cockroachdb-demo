@@ -35,6 +35,10 @@ func (s *Status) RunHealthCheck() {
 		if node == nil {
 			return
 		}
+		//Clean the map
+		for k := range s.nodesPerState {
+			delete(s.nodesPerState, k)
+		}
 
 		for _, n := range node.Nodes {
 			s.nodesPerState[n.Status]++
@@ -46,14 +50,15 @@ func (s *Status) RunHealthCheck() {
 func (s *Status) GetStatus() string {
 	message := "All Nodes are OK"
 	notAlive := 0
-	for k, _ := range s.nodesPerState {
+	for k := range s.nodesPerState {
 		if k != "LIVE" {
 			notAlive++
 		}
 	}
 	if notAlive != 0 {
+		message = ""
 		for k, v := range s.nodesPerState {
-			message += fmt.Sprintf("| %d nodes are %s |", v, k)
+			message += fmt.Sprintf("| %d node(s) %s |", v, k)
 		}
 	}
 

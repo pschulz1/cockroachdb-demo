@@ -68,13 +68,14 @@ func (s *Status) RunHealthCheck() {
 }
 
 func (s *Status) GetStatus() string {
-	message := "All Nodes are OK"
+	message := ""
 	notAlive := 0
 	for k := range s.nodesPerState {
 		if k != "LIVE" {
 			notAlive++
 		}
 	}
+	message = fmt.Sprintf("%d node(s) LIVE", len(s.nodesPerState))
 	if notAlive != 0 {
 		message = ""
 		for k, v := range s.nodesPerState {

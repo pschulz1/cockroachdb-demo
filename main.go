@@ -18,6 +18,7 @@ const (
 	CONCURRENCY = "CONCURRENCY"
 	WAIT        = "WAIT"
 	DB          = "DB"
+	LOCAL       = "LOCAL_CLUSTER"
 
 	DOMAIN = "https://demoapp.bid/"
 )
@@ -55,8 +56,12 @@ func setupRoutes() {
 	if err != nil {
 		w = faker.DefaultWait
 	}
+	l, err := strconv.ParseBool(os.Getenv(LOCAL))
+	if err != nil {
+		l = false
+	}
 
-	s = status.NewStatus()
+	s = status.NewStatus(l, os.Getenv(DB))
 	go s.RunHealthCheck()
 
 	f = faker.NewFaker(c, w, pool, os.Getenv(DB))
@@ -82,5 +87,5 @@ func main() {
 	fmt.Println("Cockroaches and Gophers!")
 	setupRoutes()
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8000", nil)
 }

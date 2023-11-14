@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sort"
 	"time"
 
 	"github.com/jackc/pgx/v4/pgxpool"
@@ -75,11 +76,17 @@ func (s *Status) GetStatus() string {
 			notAlive++
 		}
 	}
-	message = fmt.Sprintf("%d node(s) LIVE", len(s.nodesPerState))
+	message = fmt.Sprintf("%d node(s) LIVE", s.nodesPerState["LIVE"])
 	if notAlive != 0 {
 		message = ""
-		for k, v := range s.nodesPerState {
-			message += fmt.Sprintf("| %d node(s) %s |", v, k)
+		keys := []string{}
+		for k, _ := range s.nodesPerState {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+
+		for _, k := range keys {
+			message += fmt.Sprintf("| %d node(s) %s |", s.nodesPerState[k], k)
 		}
 	}
 

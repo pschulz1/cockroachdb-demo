@@ -5,3 +5,4 @@ sql/scw-scale-up.sh
 build.sh
 Disruption/
 scripts/*
+pid.file

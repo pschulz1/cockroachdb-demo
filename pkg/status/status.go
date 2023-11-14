@@ -104,7 +104,7 @@ func getLocalStatus() *node {
 	node := &node{}
 
 	//select node_id, is_live from crdb_internal.gossip_nodes
-	rows, err := dbpool.Query(context.Background(), "select node_id, is_live from crdb_internal.gossip_nodes")
+	rows, err := dbpool.Query(context.Background(), "SELECT node_id, is_live FROM crdb_internal.gossip_nodes WHERE ranges > 0")
 	if err != nil {
 		log.Printf("client: could not query database: %s\n", err)
 		return nil

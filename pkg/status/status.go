@@ -64,7 +64,7 @@ func (s *Status) RunHealthCheck() {
 		for _, n := range node.Nodes {
 			s.nodesPerState[n.Status]++
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(250 * time.Millisecond)
 	}
 }
 

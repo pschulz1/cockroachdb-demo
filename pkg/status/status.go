@@ -34,6 +34,7 @@ func NewStatus(local bool, cnx string) *Status {
 	isLocal = local
 
 	if isLocal {
+		log.Println("Running in local mode")
 		config, err := pgxpool.ParseConfig(cnx)
 		if err != nil {
 			log.Fatal("error configuring the database: ", err)
@@ -43,6 +44,8 @@ func NewStatus(local bool, cnx string) *Status {
 		if err != nil {
 			log.Fatal("error connecting to the database: ", err)
 		}
+	} else {
+		log.Println("Running in dedicated mode")
 	}
 
 	return &Status{
@@ -158,6 +161,11 @@ func getDedicatedStatus() *node {
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		log.Printf("client: error making http request: %s\n", err)
+		return nil
+	}
+
+	if res.StatusCode != http.StatusOK {
+		log.Printf("client: unexpected status code: %d\n", res.StatusCode)
 		return nil
 	}
 

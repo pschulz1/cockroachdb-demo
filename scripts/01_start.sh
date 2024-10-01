@@ -34,5 +34,3 @@ cockroach init --insecure --host=localhost:26257
 sleep 60
 
 cockroach sql --insecure --file ../sql/init.sql
-
-cd /Users/nw/projects/demo-app-crdb/scripts/

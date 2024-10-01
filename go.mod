@@ -1,4 +1,4 @@
-module github.com/Hytm/demo-app-ws
+module github.com/pschulz1/cockroachdb-demo
 
 go 1.21.1
 

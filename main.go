@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-
-	"github.com/Hytm/demo-app-ws/pkg/faker"
-	"github.com/Hytm/demo-app-ws/pkg/status"
-	"github.com/Hytm/demo-app-ws/pkg/websocket"
+	
+	"github.com/pschulz1/cockroachdb-demo/pkg/faker"
+	"github.com/pschulz1/cockroachdb-demo/pkg/status"
+	"github.com/pschulz1/cockroachdb-demo/pkg/websocket"
 
 	"github.com/joho/godotenv"
 )

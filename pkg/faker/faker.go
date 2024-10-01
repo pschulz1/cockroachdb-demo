@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Hytm/demo-app-ws/pkg/websocket"
+	"github.com/pschulz1/cockroachdb-demo/pkg/websocket"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 

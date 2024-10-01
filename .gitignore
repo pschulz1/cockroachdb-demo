@@ -2,3 +2,4 @@
 scripts/node*
 pid.file
 .DS_Store
+main

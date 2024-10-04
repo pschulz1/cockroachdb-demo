@@ -11,3 +11,6 @@ for pid in $(ps -ef | grep "haproxy" | grep -v grep | awk '{print $2}'); do kill
 
 #Remove main
 rm ../main
+
+#Remove port file
+rm restore.txt

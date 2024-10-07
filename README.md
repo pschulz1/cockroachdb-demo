@@ -17,7 +17,7 @@ This demo showcases some of CockroachDB's capabilities, including:
    ```
 
 2. **Start the Load Balancer**:
-   In the **2nd terminal**, move to the `scripts` folder and start the load balancer:
+   Open the **2nd terminal** and move to the `scripts` folder to start the load balancer:
    ```bash
    ./00_haproxy_start.sh
    ```
@@ -31,7 +31,7 @@ This demo showcases some of CockroachDB's capabilities, including:
    Open your browser and navigate to [localhost:8080](http://localhost:8080) - You should see the CockroachDB console.
 
 5. **Start the Application**:
-   Open a **1st terminal**, navigate to the repository, and start the application:
+   Go to the **1st terminal**, navigate to the repository, and start the application:
    ```bash
    ./main
    ```
@@ -40,7 +40,7 @@ This demo showcases some of CockroachDB's capabilities, including:
    Open your browser and navigate to [localhost:8000](http://localhost:8000) - You should see 3 live nodes in the header and inserts coming through.
 
 7. **Scale the Cluster Out**:
-   Continue the demo in the **1st terminal** by scaling the cluster up:
+   Continue the demo in the **2nd terminal** by scaling the cluster up:
    ```bash
    ./02_scale-out.sh
    ```

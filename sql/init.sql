@@ -7,3 +7,5 @@ CREATE TABLE orders (
 ) WITH (ttl_expire_after = '5 minutes', ttl_job_cron = '*/1 * * * *');
 
 SET cluster setting kv.rangefeed.enabled = true;
+
+SET CLUSTER SETTING server.time_until_store_dead = '1m';

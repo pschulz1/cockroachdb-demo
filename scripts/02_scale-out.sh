@@ -17,3 +17,12 @@ cockroach start \
 --http-addr=localhost:8084 \
 --join=localhost:26257,localhost:26258,localhost:26259 \
 --background
+
+cockroach start \
+--insecure \
+--store=node6 \
+--listen-addr=localhost:26262 \
+--advertise-addr=localhost:26262 \
+--http-addr=localhost:8085 \
+--join=localhost:26257,localhost:26258,localhost:26259 \
+--background

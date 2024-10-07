@@ -37,26 +37,28 @@ This demo showcases some of CockroachDB's capabilities, including:
 6. **Access the Application**:
    Open your browser and navigate to [localhost:8000](http://localhost:8000) - You should see 3 live nodes in the header and inserts coming through.
 
-7. **Scale the Cluster Up**:
+7. **Scale the Cluster Out**:
    Continue the demo in the **1st terminal** by scaling the cluster up:
    ```bash
-   ./02_scale-up.sh
+   ./02_scale-out.sh
    ```
-
-8. **Simulate a Node Failure**:
+   
+8. **Simulate a Node Failure by killing a random node**:
    Kill one of the nodes:
    ```bash
    ./03_kill.sh
    ```
+   - The UI will show a suspect node and after 1 minute, it will mark the node as failed and start the self-healing by up-replicating missing ranges to other nodes.
+   - The counter for "Under-replicated Ranges" will eventually go down to 0 again
 
 9. **Restore the Failed Node**:
    ```bash
    ./04_restore.sh
    ```
 
-10. **Scale the Cluster Down**:
+10. **Scale the Cluster In**:
     ```bash
-    ./05_scale-down.sh
+    ./05_scale-in.sh
     ```
 
 11. **Stop the Application**:

@@ -27,8 +27,9 @@ case $port in
     node_ui_port=8084
     node="node5"
     ;;
-  *)
-    error_string="Invalid input"
+  26262)
+    node_ui_port=8085
+    node="node6"
     ;;
 esac
 

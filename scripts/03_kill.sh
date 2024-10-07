@@ -1,6 +1,6 @@
 #!/bin/bash
 
-numbers=(57 58 59 60 61)
+numbers=(57 58 59 60 61 62)
 random_index=$((RANDOM % ${#numbers[@]}))
 random_number=${numbers[$random_index]}
 

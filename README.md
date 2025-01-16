@@ -33,19 +33,24 @@ This demo showcases some of CockroachDB's capabilities, including:
 5. **Start the Application**:
    Go to the **1st terminal**, navigate to the repository, and start the application:
    ```bash
+   cp .env-template .env
+   ```
+   If you follow this demo, no changes needed. Otherwise ensure to make the changes needed, in order to connect to a Cockroach Cloud cluster.
+   
+   ```bash
    ./main
    ```
 
-6. **Access the Application**:
+7. **Access the Application**:
    Open your browser and navigate to [localhost:8000](http://localhost:8000) - You should see 3 live nodes in the header and inserts coming through.
 
-7. **Scale the Cluster Out**:
+8. **Scale the Cluster Out**:
    Continue the demo in the **2nd terminal** by scaling the cluster up:
    ```bash
    ./02_scale-out.sh
    ```
 
-8. **Simulate a Node Failure by killing a random node**:
+9. **Simulate a Node Failure by killing a random node**:
    Kill one of the nodes:
    ```bash
    ./03_kill.sh
@@ -53,23 +58,23 @@ This demo showcases some of CockroachDB's capabilities, including:
    - The UI will show a suspect node and after 1 minute, it will mark the node as failed and start the self-healing by up-replicating missing ranges to other nodes.
    - The counter for "Under-replicated Ranges" will eventually go down to 0 again
 
-9. **Restore the Failed Node**:
+10. **Restore the Failed Node**:
    ```bash
    ./04_restore.sh
    ```
 
-10. **Scale the Cluster In**:
+11. **Scale the Cluster In**:
     ```bash
     ./05_scale-in.sh
     ```
 
-11. **Stop the Application**:
+12. **Stop the Application**:
     When finished, stop the application in the **2nd terminal**:
     ```bash
     Ctrl + C
     ```
 
-12. **Clean Up**:
+13. **Clean Up**:
     Finally, clean up by killing the processes and removing local files:
     ```bash
     ./99_clean.sh

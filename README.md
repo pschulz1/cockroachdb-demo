@@ -49,6 +49,7 @@ This demo showcases some of CockroachDB's capabilities, including:
    ```bash
    ./02_scale-out.sh
    ```
+   Go to Metrics - SQL - Double check that after ~30 seconds connections have been spread out across all 6 nodes. 
 
 9. **Simulate a Node Failure by killing a random node**:
    Kill one of the nodes:

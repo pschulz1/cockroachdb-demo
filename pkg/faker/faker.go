@@ -31,7 +31,7 @@ func NewFaker(concurrency int, wait int, pool *websocket.Pool, cnx string) *Fake
 		wait = DefaultWait
 	}
 
-	if concurrency < 1 || concurrency > 10 {
+	if concurrency < 1 || concurrency > 500 {
 		concurrency = DefaultConcurrency
 	}
 

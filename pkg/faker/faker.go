@@ -10,9 +10,9 @@ import (
 )
 
 const (
-	minWait            = 100
-	DefaultWait        = 400
-	DefaultConcurrency = 5
+	minWait            = 10
+	DefaultWait        = 25
+	DefaultConcurrency = 500
 )
 
 type Faker struct {
@@ -71,6 +71,11 @@ func (f *Faker) initRun() {
 	if err != nil {
 		log.Fatal("error configuring the database: ", err)
 	}
+
+	// Set the maximum lifetime for a connection (e.g., 30 seconds)
+    config.MaxConnLifetime = 30 * time.Second
+	// Set the maximum number of connections in the pool (e.g., 18)
+    config.MaxConns = 18
 
 	dbpool, err := pgxpool.ConnectConfig(context.Background(), config)
 	if err != nil {

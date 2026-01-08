@@ -35,7 +35,7 @@ esac
 
 # echo $node
 
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=$node \
 --listen-addr=localhost:$port \

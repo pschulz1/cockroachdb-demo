@@ -1,5 +1,5 @@
 #Start the first node
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node1 \
 --listen-addr=localhost:26257 \
@@ -9,7 +9,7 @@ cockroach start \
 --background
 
 #Start the second node
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node2 \
 --listen-addr=localhost:26258 \
@@ -19,7 +19,7 @@ cockroach start \
 --background
 
 #Start the third node
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node3 \
 --listen-addr=localhost:26259 \
@@ -29,8 +29,8 @@ cockroach start \
 --background
 
 #Initialize the cluster
-cockroach init --insecure --host=localhost:26257
+../binaries/cockroach-v25.4.1 init --insecure --host=localhost:26257
 
 sleep 60
 
-cockroach sql --insecure --file ../sql/init.sql
+../binaries/cockroach-v25.4.1 sql --insecure --file ../sql/init.sql

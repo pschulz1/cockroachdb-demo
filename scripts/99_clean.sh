@@ -14,3 +14,6 @@ rm ../main
 
 #Remove port file
 rm restore.txt
+
+#Remove downloads
+rm -rf ../binaries/*

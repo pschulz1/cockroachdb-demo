@@ -6,23 +6,26 @@ This demo showcases some of CockroachDB's capabilities, including:
 - **Surviving node failures** with zero RPO and near-zero RTO
 - **Self-healing capabilities**
 - **Non-disruptive horizontal scaling** (scaling out and back in)
+- **Rolling Uogrades** (scaling out and back in)
+- **Backup & Restore** (scaling out and back in)
 
 
 ## Instructions
 
-1. **Build the Go Binary**:
-   Open the **1st terminal**, navigate to the repository, and build the Go binary:
+1. **Prepare**:
+   Open the **1st terminal**, navigate to the `scripts` folder. This will start haproxy, prepare the envrionment for the demo application and download two CockroachDB binaries (internet required).
    ```bash
-   go build main.go
+  ./00_prepare.sh
    ```
 
 2. **Start the Load Balancer**:
-   Open the **2nd terminal** and move to the `scripts` folder to start the load balancer:
+   Open the **2nd terminal** and move to the `cockroachdb-demo` folder to start the application:
    ```bash
-   ./00_haproxy_start.sh
+   ./main
    ```
 
-3. **Start the Basic 3-Node Cluster**:
+3. **Start the 3-Node Cluster**:
+   Back in the **1st terminal** start the CockroachDB custer.
    ```bash
    ./01_start.sh
    ```
@@ -87,7 +90,6 @@ This demo showcases some of CockroachDB's capabilities, including:
 
 Make sure you have the following installed:
 
-- [CockroachDB](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html)
 - [Go](https://golang.org/doc/install)
 
 ---

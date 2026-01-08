@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node4 \
 --listen-addr=localhost:26260 \
@@ -9,7 +9,7 @@ cockroach start \
 --join=localhost:26257,localhost:26258,localhost:26259 \
 --background
 
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node5 \
 --listen-addr=localhost:26261 \
@@ -18,7 +18,7 @@ cockroach start \
 --join=localhost:26257,localhost:26258,localhost:26259 \
 --background
 
-cockroach start \
+../binaries/cockroach-v25.4.1 start \
 --insecure \
 --store=node6 \
 --listen-addr=localhost:26262 \

@@ -1,0 +1,1 @@
+BACKUP INTO 'nodelocal://1/my-cluster-backup' WITH DETACHED, revision_history;

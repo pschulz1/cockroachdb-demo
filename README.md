@@ -13,19 +13,19 @@ This demo showcases some of CockroachDB's capabilities, including:
 ## Instructions
 
 1. **Prepare**:
-   Open the **1st terminal**, navigate to the `cockroachdb-demo/scripts` folder. This will start haproxy, prepare the envrionment for the demo application and download two CockroachDB binaries (internet required).
+   Open the **1st terminal**, navigate to the `cockroachdb-demo/scripts` folder. This script will start haproxy, prepare the envrionment for the demo application and download two CockroachDB binaries (internet required).
    ```bash
    ./00_prepare.sh
    ```
 
-2. **Start the Load Balancer**:
-   Open the **2nd terminal** and move to the `cockroachdb-demo` folder to start the application:
+2. **Start the application**:
+   Open a **2nd terminal** and go to the `cockroachdb-demo` folder to start the application:
    ```bash
    ./main
    ```
 
 3. **Start the 3-Node Cluster**:
-   Back in the **1st terminal** start the CockroachDB custer.
+   Back in the **1st terminal** still in `cockroachdb-demo/scripts` start the CockroachDB custer.
    ```bash
    ./01_start.sh
    ```

@@ -13,7 +13,7 @@ This demo showcases some of CockroachDB's capabilities, including:
 ## Instructions
 
 1. **Prepare**:
-   Open the **1st terminal**, navigate to the `scripts` folder. This will start haproxy, prepare the envrionment for the demo application and download two CockroachDB binaries (internet required).
+   Open the **1st terminal**, navigate to the `cockroachdb-demo/scripts` folder. This will start haproxy, prepare the envrionment for the demo application and download two CockroachDB binaries (internet required).
    ```bash
    ./00_prepare.sh
    ```

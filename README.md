@@ -33,28 +33,17 @@ This demo showcases some of CockroachDB's capabilities, including:
 4. **Access the CockroachDB Console**:
    Open your browser and navigate to [localhost:8080](http://localhost:8080) - You should see the CockroachDB console.
 
-5. **Start the Application**:
-   Go to the **1st terminal**, navigate to the repository, and start the application:
-   ```bash
-   cp .env-template .env
-   ```
-   If you follow this demo, no changes needed. Otherwise ensure to make the changes needed, in order to connect to a Cockroach Cloud cluster.
-   
-   ```bash
-   ./main
-   ```
-
-7. **Access the Application**:
+5. **Access the Application**:
    Open your browser and navigate to [localhost:8000](http://localhost:8000) - You should see 3 live nodes in the header and inserts coming through.
 
-8. **Scale the Cluster Out**:
+6. **Scale the Cluster Out**:
    Continue the demo in the **2nd terminal** by scaling the cluster up:
    ```bash
    ./02_scale-out.sh
    ```
    Go to Metrics - SQL - Double check that after ~30 seconds connections have been spread out across all 6 nodes. 
 
-9. **Simulate a Node Failure by killing a random node**:
+7. **Simulate a Node Failure by killing a random node**:
    Kill one of the nodes:
    ```bash
    ./03_kill.sh
@@ -62,14 +51,28 @@ This demo showcases some of CockroachDB's capabilities, including:
    - The UI will show a suspect node and after 1 minute, it will mark the node as failed and start the self-healing by up-replicating missing ranges to other nodes.
    - The counter for "Under-replicated Ranges" will eventually go down to 0 again
 
-10. **Restore the Failed Node**:
+8. **Restore the Failed Node**:
    ```bash
    ./04_restore.sh
    ```
 
-11. **Scale the Cluster In**:
+9. **Scale the Cluster In**:
     ```bash
     ./05_scale-in.sh
+    ```
+10. **Upgrade the Cluster**:
+    ```bash
+    ./06_upgrade.sh
+    ```
+
+11. **Backup the Cluster**:
+    ```bash
+    ./07_backup_drop.sh
+    ```
+
+12. **Restore a dropped table**:
+    ```bash
+    ./08_restore.sh
     ```
 
 12. **Stop the Application**:

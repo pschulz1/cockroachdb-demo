@@ -5,8 +5,8 @@ This demo showcases some of CockroachDB's capabilities, including:
 
 - **Surviving node failures** with zero RPO and near-zero RTO
 - **Self-healing capabilities**
-- **Non-disruptive horizontal scaling** (scaling out and back in)
-- **Rolling Uogrades** (scaling out and back in)
+- **Non-disruptive horizontal scaling (our and back in)** (scaling out and back in)
+- **Rolling Upgrades** (scaling out and back in)
 - **Backup & Restore** (scaling out and back in)
 
 

@@ -3,11 +3,11 @@
 
 This demo showcases some of CockroachDB's capabilities, including:
 
-- **Surviving node failures** with zero RPO and near-zero RTO
+- **Surviving node failures** 
 - **Self-healing capabilities**
-- **Non-disruptive horizontal scaling (our and back in)** (scaling out and back in)
-- **Rolling Upgrades** (scaling out and back in)
-- **Backup & Restore** (scaling out and back in)
+- **Non-disruptive horizontal scaling (our and back in)**
+- **Rolling Upgrades** 
+- **Backup & Restore**
 
 
 ## Instructions
@@ -85,7 +85,7 @@ This demo showcases some of CockroachDB's capabilities, including:
     ./08_restore.sh
     ```
     - Go to your browser and verify the demo application has started agai inserting (maybe refresh tab), since the underlyign table is back. 
-    
+
 12. **Stop the Application**:
     When finished, stop the application in the **2nd terminal**:
     ```bash

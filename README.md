@@ -5,7 +5,7 @@ This demo showcases some of CockroachDB's capabilities, including:
 
 - **Surviving node failures** 
 - **Self-healing capabilities**
-- **Non-disruptive horizontal scaling (our and back in)**
+- **Non-disruptive horizontal scaling (out and back in)**
 - **Rolling Upgrades** 
 - **Backup & Restore**
 

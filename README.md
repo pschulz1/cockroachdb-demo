@@ -18,16 +18,16 @@ This demo showcases some of CockroachDB's capabilities, including:
    ./00_prepare.sh
    ```
 
-2. **Start the application**:
-   Open a **2nd terminal** and go to the `cockroachdb-demo` folder to start the application:
-   ```bash
-   ./main
-   ```
-
-3. **Start the 3-Node Cluster**:
+2. **Start the 3-Node Cluster**:
    Back in the **1st terminal** still in `cockroachdb-demo/scripts` start the CockroachDB custer.
    ```bash
    ./01_start.sh
+   ```
+
+3. **Start the application**:
+   Open a **2nd terminal** and go to the `cockroachdb-demo` folder to start the application:
+   ```bash
+   ./main
    ```
 
 4. **Access the CockroachDB Console**:
